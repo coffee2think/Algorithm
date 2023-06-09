@@ -13,7 +13,7 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
 
         dfs(N, M);
-        System.out.println(sb);
+        System.out.println(sb.toString());
 
         br.close();
     }
