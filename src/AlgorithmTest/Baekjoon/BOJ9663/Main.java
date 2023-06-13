@@ -15,11 +15,11 @@ public class Main {
     }
 
     public static int NQueen(int n) {
-        boolean[][] board = new boolean[n][n];
+        int[][] board = new int[n][n];
         return NQueen(board, 0, 0);
     }
 
-    private static int NQueen(boolean[][] board, int row, int cnt) {
+    private static int NQueen(int[][] board, int row, int cnt) {
         int boardSize = board.length;
         System.out.println("실행 횟수 : " + ++count);
 
@@ -64,5 +64,9 @@ public class Main {
         }
 
         return false;
+    }
+
+    public static void fillBoard(int[][] board, int row, int col, int num){
+
     }
 }
