@@ -67,6 +67,29 @@ public class Main {
     }
 
     public static void fillBoard(int[][] board, int row, int col, int num){
+        int[] dx = {1, -1, -1, 1};
+        int[] dy = {1, 1, -1, -1};
+        int boardSize = board.length;
 
+        if(row == boardSize){
+            return;
+        }
+
+        for(int i=0; i<boardSize; i++){
+            if(board[row][i] == 0) board[row][i] = num;
+            if(board[i][col] == 0) board[i][col] = num;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int x = col + dx[i];
+            int y = row + dy[i];
+            while (x >= 0 && x < boardSize && y >= 0 && y < boardSize) {
+                if (board[y][x] == 0) {
+                    board[y][x] = num;
+                }
+                x += dx[i];
+                y += dy[i];
+            }
+        }
     }
 }
