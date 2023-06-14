@@ -1,6 +1,4 @@
-package programmers.correctParentheses;
-
-import java.util.Stack;
+package programmers.lv2.correctParentheses;
 
 public class Main {
     public static void main(String[] args) {

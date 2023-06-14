@@ -1,4 +1,4 @@
-package programmers.makeMinCombSum;
+package programmers.lv2.makeMinCombSum;
 
 import java.util.Arrays;
 
