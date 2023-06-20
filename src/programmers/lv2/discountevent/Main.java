@@ -1,7 +1,5 @@
 package programmers.lv2.discountevent;
 
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
         String[] want = new String[]{"banana", "apple", "rice", "pork", "pot"};
@@ -47,14 +45,11 @@ public class Main {
 
     public static boolean isSatisfied(int[] number) {
         int sum = 0;
-        for (int i = 0; i < number.length; i++) {
-            if (number[i] > 0)
-                sum += number[i];
+        for (int n : number) {
+            if (n > 0)
+                sum += n;
         }
 
-        if (sum == 0)
-            return true;
-        else
-            return false;
+        return sum == 0;
     }
 }
