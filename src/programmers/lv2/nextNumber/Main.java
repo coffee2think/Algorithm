@@ -2,7 +2,7 @@ package programmers.lv2.nextNumber;
 
 public class Main {
     public static void main(String[] args) {
-        int n = 15;
+        int n = 14;
         System.out.println(solution(n));
     }
 
