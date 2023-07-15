@@ -3,8 +3,6 @@ package Baekjoon.BOJ9251;
 import java.io.*;
 
 public class Main2 {
-    static int[][] dp;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -18,9 +16,9 @@ public class Main2 {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (seq1[i] == seq2[j]) {
-                    dp[i + 1][j + 1] = dp[i][j] + 1;
+                    lcs[i + 1][j + 1] = lcs[i][j] + 1;
                 } else {
-                    dp[i + 1][j + 1] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+                    lcs[i + 1][j + 1] = Math.max(lcs[i + 1][j], lcs[i][j + 1]);
                 }
             }
         }
