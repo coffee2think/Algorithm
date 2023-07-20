@@ -13,11 +13,7 @@ public class Main {
 
         for (int i = 1; i <= str.length(); i++) {
             for (int j = 0; j < 26; j++) {
-                if (str.charAt(i - 1) - 'a' == j) {
-                    psum[j][i] = psum[j][i - 1] + 1;
-                } else {
-                    psum[j][i] = psum[j][i - 1];
-                }
+                psum[j][i] = psum[j][i - 1] + (str.charAt(i - 1) - 'a' == j ? 1 : 0);
             }
         }
 
