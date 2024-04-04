@@ -1,4 +1,7 @@
-package programmers.lv2.discountevent;
+package src.programmers.lv2.discountevent;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,26 +13,20 @@ public class Main {
 
     public static int solution(String[] want, int[] number, String[] discount) {
         int cnt = 0;
+        Queue<String> queue = new LinkedList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < discount.length; i++) {
             String item = discount[i];
-            int idx = isContained(want, item);
-            if (idx != -1) {
-                number[idx]--;
+            queue.offer(item);
+            if (queue.size() > 10) {
+                String polledItem = queue.poll();
+                int polledIdx = isContained(want, polledItem);
+                if (polledIdx != -1) number[polledIdx]++;
             }
-        }
 
-        if (isSatisfied(number)) cnt++;
-        for (int i = 10; i < discount.length; i++) {
-            String item = discount[i - 10];
             int idx = isContained(want, item);
-            if (idx != -1) number[idx]++;
-
-            item = discount[i];
-            idx = isContained(want, item);
             if (idx != -1) number[idx]--;
-
-            if(isSatisfied(number)) cnt++;
+            if (isSatisfied(number)) cnt++;
         }
 
         return cnt;
@@ -40,16 +37,16 @@ public class Main {
             if (item.equals(want[i]))
                 return i;
         }
+
         return -1;
     }
 
     public static boolean isSatisfied(int[] number) {
-        int sum = 0;
-        for (int n : number) {
-            if (n > 0)
-                sum += n;
+        for (int i = 0; i < number.length; i++) {
+            if (number[i] > 0)
+                return false;
         }
 
-        return sum == 0;
+        return true;
     }
 }
