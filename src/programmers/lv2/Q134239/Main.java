@@ -24,40 +24,26 @@ public class Main {
     }
 
     public double[] solution(int k, int[][] ranges) {
-        List<Integer> seq = new ArrayList<>(); // 수열을 저장할 리스트
-        seq.add(k); // 초기항
+        List<Double> psum = new ArrayList<>(); // 누적합을 저장할 리스트
+        int collatz = k; // 초기항은 k
 
-        // 콜라츠 수열 생성
-        while(seq.get(seq.size() - 1) > 1) {
-            int last = seq.get(seq.size() - 1);
-            int collatz = last % 2 == 0 ? last / 2 : last * 3 + 1;
-            seq.add(collatz);
+        psum.add((double) collatz);
+
+        // 콜라츠 수열에 대한 누적합 리스트 생성
+        while(collatz != 1) {
+            int old = collatz;
+            collatz = collatz % 2 == 0 ? collatz / 2 : collatz * 3 + 1;
+            psum.add(psum.get(psum.size() - 1) + (old + collatz) / 2.0);
         }
 
         // 정적분 결과 저장
         double[] result = new double[ranges.length];
         for (int i = 0; i < result.length; i++) {
             int start = ranges[i][0];
-            int end = seq.size() - 1 + ranges[i][1];
-            result[i] = integral(start, end, seq);
+            int end = psum.size() - 1 + ranges[i][1];
+            result[i] = (start <= end) ? psum.get(end) - psum.get(start) : -1;
         }
 
         return result;
-    }
-
-    // 주어진 구간에 대해 정적분
-    public double integral(int start, int end, List<Integer> seq) {
-        // 구간이 잘못되었을 경우
-        if (start > end) {
-            return -1.0;
-        }
-
-        double sum = 0;
-
-        for (int i = start; i < end; i++) {
-            sum += (double) (seq.get(i) + seq.get(i + 1)) / 2.0;
-        }
-
-        return sum;
     }
 }
