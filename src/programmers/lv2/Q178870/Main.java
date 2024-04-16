@@ -1,6 +1,7 @@
 package src.programmers.lv2.Q178870;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Programmers 178870 lv2
@@ -10,13 +11,28 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] sequence = {1,1,1,1,1,1,1};
-        int k = 7;
-        int[] answer = {0, 6};
+//        int[] sequence = {1,1,1,1,1,1,1};
+//        int k = 7;
+//        int[] answer = {0, 6};
 
+        int maxSequenceLength = 1_000_000;
+        int maxNumber = 1000;
+        int[] sequence = new int[maxSequenceLength];
+        Random random = new Random();
+        for(int i = 0; i < maxSequenceLength; i++){
+            sequence[i] = random.nextInt(maxNumber) + 1;
+        }
+        Arrays.sort(sequence);
+        int k = Math.max(random.nextInt(1_000_000_000) + 1, 5);
+        System.out.println("sequence: " + Arrays.toString(sequence));
+        System.out.println("k: " + k);
+
+        long before = System.currentTimeMillis();
         int[] result = new Main().solution(sequence, k);
+        long after = System.currentTimeMillis();
         System.out.println(Arrays.toString(result));
-        System.out.println(Arrays.equals(answer, result) ? "Correct!" : "Wrong..");
+//        System.out.println(Arrays.equals(answer, result) ? "Correct!" : "Wrong..");
+        System.out.println("Time: " + (after - before) + "ms");
     }
 
     public int[] solution(int[] sequence, int k) {
@@ -27,6 +43,7 @@ public class Main {
         for(int left = 0, right = 0; left < sequence.length; left++){
             while(right < sequence.length && sum < k){
                 sum += sequence[right++];
+                System.out.println("left: " + left + ", right: " + right + ", sum: " + sum);
             }
 
             if(sum == k && right - left < minLength){
