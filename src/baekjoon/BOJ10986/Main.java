@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * Baekjoon Q10986 골드
+ * Baekjoon Q10986 골드3
  * Problem name: 나머지 합
  * link: https://www.acmicpc.net/problem/10986
  */
