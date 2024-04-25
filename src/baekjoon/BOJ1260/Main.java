@@ -6,9 +6,8 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 /**
- * Baekjoon Q1260 실버2
- * Problem name: DFS와 BFS
- * link: https://www.acmicpc.net/problem/1260
+ * date: 2024.04.25
+ * source: https://www.acmicpc.net/problem/1260
  */
 
 public class Main {
