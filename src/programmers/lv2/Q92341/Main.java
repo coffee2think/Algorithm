@@ -31,11 +31,6 @@ public class Main {
         Map<String ,Integer> timeMap = new HashMap<>();
         Map<String ,Integer> feeMap = new TreeMap<>();
 
-        int baseTime = fees[0];
-        int baseFee = fees[1];
-        int unitTime = fees[2];
-        int unitFee = fees[3];
-
         for (String record : records) {
             // 1. 기록 문자열 분리
             String[] splitRecord = record.split(" ");
@@ -60,6 +55,11 @@ public class Main {
         }
 
         // 4. 요금 계산
+        int baseTime = fees[0];
+        int baseFee = fees[1];
+        int unitTime = fees[2];
+        int unitFee = fees[3];
+
         for (String carNumber : timeMap.keySet()) {
             int totalTime = timeMap.get(carNumber);
             int exceedTime = Math.max(totalTime - baseTime, 0);
