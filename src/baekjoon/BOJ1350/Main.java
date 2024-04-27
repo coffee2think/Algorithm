@@ -14,22 +14,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        // given
         int N = Integer.parseInt(br.readLine());
-        int[] fileSizes = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            fileSizes[i] = Integer.parseInt(st.nextToken());
-        }
         int clusterSize = Integer.parseInt(br.readLine());
-
-        // when
         long clusterCount = 0;
-        for (int fileSize : fileSizes) {
-            clusterCount += (fileSize + clusterSize - 1) / clusterSize; // 올림 계산
+
+        for (int i = 0; i < N; i++) {
+            clusterCount += (Integer.parseInt(st.nextToken()) + clusterSize - 1) / clusterSize; // 올림 계산
         }
 
-        // then
         System.out.println(clusterCount * clusterSize);
         br.close();
     }
