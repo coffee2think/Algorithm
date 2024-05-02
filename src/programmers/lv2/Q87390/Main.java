@@ -2,6 +2,11 @@ package src.programmers.lv2.Q87390;
 
 import java.util.Arrays;
 
+/**
+ * date: 2024-05-02
+ * source: https://school.programmers.co.kr/learn/courses/30/lessons/87390
+ */
+
 public class Main {
     public static void main(String[] args) {
         // given
