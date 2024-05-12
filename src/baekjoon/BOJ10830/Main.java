@@ -24,7 +24,7 @@ public class Main {
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
-                matrix[i][j] = Integer.parseInt(st.nextToken());
+                matrix[i][j] = Integer.parseInt(st.nextToken()) % 1000;
             }
         }
 
@@ -44,11 +44,6 @@ public class Main {
 
     public static int[][] powerOfMatrix(int[][] matrix, long B) {
         if (B == 1) {
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix[0].length; j++) {
-                    matrix[i][j] %= 1000;
-                }
-            }
             return matrix;
         }
 
