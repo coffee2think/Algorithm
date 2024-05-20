@@ -41,16 +41,16 @@ public class Main {
         int lastDay = 0; // 마지막으로 익은 토마토 날짜
 
         // bfs 초기값 설정
-        for (int[] pos : ripeTomatoes) {
-            q.offer(pos);
+        for (int[] tomato : ripeTomatoes) {
+            q.offer(tomato);
         }
 
         // bfs 구현
         while (!q.isEmpty()) {
-            int[] pos = q.poll();
-            int x = pos[0];
-            int y = pos[1];
-            int days = pos[2];
+            int[] tomato = q.poll();
+            int x = tomato[0];
+            int y = tomato[1];
+            int days = tomato[2];
 
             for (int[] direction : directions) {
                 int nx = x + direction[0];
