@@ -28,10 +28,6 @@ public class Main {
         }
 
         System.out.printf("정답률 : %d / %d (%.1f%%)\n", answerCount, total, ((double)answerCount / total));
-
-        String[] test = {"114", "11", "14", "13", "11473"};
-        Arrays.sort(test);
-        System.out.println(Arrays.toString(test));
     }
 
     public static boolean solution(String[] phone_book) {
