@@ -27,7 +27,7 @@ public class Main {
             }
         }
 
-        System.out.printf("정답률 : %d / %d (%.1f%%)\n", answerCount, total, ((double)answerCount / total));
+        System.out.printf("정답률 : %d / %d (%.1f%%)\n", answerCount, total, ((double)answerCount / total * 100));
     }
 
     public static boolean solution(String[] phone_book) {
