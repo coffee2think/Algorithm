@@ -6,21 +6,41 @@ import java.util.*;
  * Programmers Q42586 lv2
  * Problem name: 기능개발
  * link: https://school.programmers.co.kr/learn/courses/30/lessons/42586
+ *
+ * ReviewDate: 2025-10-08
  */
 
 public class Main {
     public static void main(String[] args) {
-        int[] progresses1 = new int[]{93, 30, 55};
-        int[] speeds1 = new int[]{1, 30, 5};
-        int[] progresses2 = new int[]{95,90,99,99,80,99};
-        int[] speeds2 = new int[]{1,1,1,1,1,1};
+        int[][] progresses = {
+                {93, 30, 55},
+                {95,90,99,99,80,99}
+        };
+        int[][] speeds = {
+                {1, 30, 5},
+                {1,1,1,1,1,1}
+        };
+        int[][] answer = {
+                {2, 1},
+                {1, 3, 2}
+        };
 
-        System.out.println(Arrays.toString(new Main().solution1(progresses2, speeds2)));
-        System.out.println(Arrays.toString(new Main().solution2(progresses2, speeds2)));
+        int cases = answer.length;
+        int answerCount = 0;
+        for (int i = 0; i < cases; i++) {
+            if (Arrays.equals(solutionRetry2(progresses[i], speeds[i]), answer[i])) {
+                System.out.println((i + 1) + ". 정답입니다.");
+                answerCount++;
+            } else {
+                System.out.println((i + 1) + ". 틀렸습니다.");
+            }
+        }
+
+        System.out.printf("정답률 : %d / %d (%.1f%%)\n", answerCount, cases, ((double)answerCount / cases * 100));
     }
 
     // 배열을 이용한 풀이
-    public int[] solution1(int[] progresses, int[] speeds) {
+    public static int[] solution1(int[] progresses, int[] speeds) {
         // 기능별 남은 작업 기간
         int[] days = new int[progresses.length];
         for (int i = 0; i < days.length; i++) {
@@ -49,7 +69,7 @@ public class Main {
     }
 
     // 큐를 이용한 풀이
-    public int[] solution2(int[] progresses, int[] speeds) {
+    public static int[] solution2(int[] progresses, int[] speeds) {
         Queue<Integer> q = new LinkedList<>();
 
         // 남은 작업 기간을 계산하여 큐에 넣음
@@ -78,7 +98,78 @@ public class Main {
         for (int i = 0; i < answer.length; i++) {
             answer[i] = list.get(i);
         }
-
         return answer;
+    }
+
+    // 큐를 이용한 방식
+    // 푼 날짜: 2025-10-08
+    public static int[] solutionRetry(int[] progresses, int[] speeds) {
+        int n = progresses.length;
+        int[] leftDays = new int[n];
+        for (int i = 0; i < n; i++) {
+            leftDays[i] = (int)Math.ceil((100.0 - progresses[i]) / speeds[i]);
+        }
+        System.out.println("leftDays: " + Arrays.toString(leftDays));
+
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int current = leftDays[i];
+            if (queue.isEmpty() || current <= queue.peek()) {
+                queue.offer(current);
+            } else if (current > queue.peek()) {
+                list.add(queue.size());
+                queue.clear();
+                queue.offer(current);
+            }
+        }
+
+        if (!queue.isEmpty()) {
+            list.add(queue.size());
+            queue.clear();
+        }
+
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+        System.out.println("answer: " + Arrays.toString(answer));
+        return answer;
+    }
+
+    // 투포인터를 이용한 방식
+    // 푼 날짜: 2025-10-08
+    public static int[] solutionRetry2(int[] progresses, int[] speeds) {
+        int left = 0;
+        int right = 0;
+
+        int total = progresses.length;
+        List<Integer> commits = new ArrayList<>();
+        int headDays = calculateDays(progresses, speeds, left);
+        for (int i = 0; i < total; i++) {
+            int currentDays = calculateDays(progresses, speeds, i);
+            if (currentDays > headDays) {
+                right = i - 1;
+                commits.add(right - left + 1); // 배포될 작업 개수 기록
+                left = right = i;
+                headDays = currentDays;
+            }
+        }
+
+        // 마지막 남은 작업 확인
+        if (left == right) {
+            right = total - 1;
+            commits.add(right - left + 1);
+        }
+
+        int[] answer = new int[commits.size()];
+        for (int i = 0; i < commits.size(); i++) {
+            answer[i] = commits.get(i);
+        }
+        return answer;
+    }
+
+    public static int calculateDays(int[] progresses, int[] speeds, int index) {
+        return (int)Math.ceil((100.0 - progresses[index]) / speeds[index]);
     }
 }
