@@ -1,4 +1,4 @@
-package src.baekjoon.Q21553;
+package src.baekjoon.BOJ21553;
 
 
 import java.io.BufferedReader;
