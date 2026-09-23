@@ -1,5 +1,6 @@
 package programmers.lv0.Q120852;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,23 +11,50 @@ import java.util.Set;
 public class Solution {
     public int[] solution1(int n) {
         int[] answer = {};
-        Set<Integer> set = new HashSet<>();
+        ArrayList<Integer> factors = new ArrayList<>();
 
         for (int i = 2; i * i <= n; i++) {
-            while (n % i == 0) {
-                n /= i;
-                if (!set.contains(i)) {
-                    set.add(i);
+            if (n % i == 0) {
+                factors.add(i);
+
+                while (n % i == 0) {
+                    n /= i;
                 }
             }
         }
 
         if (n > 1) {
-            set.add(n);
+            factors.add(n);
         }
 
-        answer = set.stream()
+        answer = factors.stream()
                 .mapToInt(Integer::intValue)
+                .toArray();
+
+        return answer;
+    }
+
+    public int[] solution2(int n) {
+        int[] answer = {};
+        Set<Integer> factors = new HashSet<>();
+
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                factors.add(i);
+
+                while (n % i == 0) {
+                    n /= i;
+                }
+            }
+        }
+
+        if (n > 1) {
+            factors.add(n);
+        }
+
+        answer = factors.stream()
+                .mapToInt(Integer::intValue)
+                .sorted()
                 .toArray();
 
         return answer;

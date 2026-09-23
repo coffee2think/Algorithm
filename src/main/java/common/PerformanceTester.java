@@ -1,3 +1,5 @@
+package common;
+
 public class PerformanceTester {
     public static void measureExecutionTime(Runnable task) {
         long startTime = System.nanoTime();

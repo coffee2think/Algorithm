@@ -1,6 +1,6 @@
 package baekjoon.BOJ7120;
 
-import src.PerformanceTester;
+import common.PerformanceTester;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
