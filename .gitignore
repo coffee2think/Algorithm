@@ -1,37 +1,39 @@
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# Maven and Java build output
+/target/
+/out/
+*.class
 
-### Eclipse ###
-.apt_generated
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.apt_generated/
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+.sts4-cache/
+/bin/
 
-### NetBeans ###
+# Gradle
+/.gradle/
+/build/
+
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
-.vscode/
+# Visual Studio Code
+/.vscode/
 
-### Mac OS ###
-.DS_Store### Example user template template
-### Example user template
+# OS files
+.DS_Store
+Thumbs.db
 
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
-.gradle
+# Local execution output
+/result.txt
